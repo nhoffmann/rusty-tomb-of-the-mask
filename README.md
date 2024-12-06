@@ -17,3 +17,11 @@ A Tomb Of The Mask clone written in Bevy and Rust. Another one for the 20 games 
 * Add more levels
 * Other stuff from the original Tomb Of The Mask
 * Release to iOS, so we need to move the character on swipe gestures as well
+
+## Or a minor pivot to make it fresh
+
+* Game/Movement mechanics from TotM
+* To complete a level, the player has to be in a certain configuration. Configurations are: Start, Square, Circle, Pentagon etc. 
+* Passing certain tiles on the playing field changes the comfiguration 
+* Level can only be completed when in a required configuration
+* Some element needed to increase difficulty by time passed, so it is stressful
