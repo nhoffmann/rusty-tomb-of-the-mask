@@ -4,6 +4,9 @@ mod board;
 mod camera;
 mod globals;
 mod graphics;
+mod input;
+mod pieces;
+mod player;
 mod states;
 mod vectors;
 
@@ -22,7 +25,12 @@ fn main() {
                 .set(ImagePlugin::default_nearest()),
         )
         .init_state::<states::MainState>()
-        .add_plugins((board::BoardPlugin, graphics::GraphicsPlugin))
+        .add_plugins((
+            board::BoardPlugin,
+            graphics::GraphicsPlugin,
+            input::InputPlugin,
+            player::PlayerPlugin,
+        ))
         .add_systems(Startup, camera::setup)
         .run();
 }

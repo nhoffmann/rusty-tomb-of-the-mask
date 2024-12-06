@@ -2,7 +2,10 @@ use bevy::prelude::*;
 
 use crate::{
     board::components::{Position, Tile},
-    graphics::assets::ATLAS_PATH,
+    graphics::{
+        assets::{ATLAS_PATH, SPRITE_FLOOR},
+        TILE_Z,
+    },
 };
 
 use super::{assets::AsciiSpriteSheet, TILE_SIZE};
@@ -20,13 +23,9 @@ pub fn spawn_tile_renderer(
     for (entity, position) in query.iter() {
         let texture = TextureAtlas {
             layout: sprite_atlas.0.clone(),
-            index: 177,
+            index: SPRITE_FLOOR,
         };
-        let v = Vec3::new(
-            position.v.x as f32 * TILE_SIZE,
-            position.v.y as f32 * TILE_SIZE,
-            0.,
-        );
+        let v = super::get_world_position(position, TILE_Z);
 
         commands.entity(entity).insert((
             Sprite {
@@ -36,11 +35,7 @@ pub fn spawn_tile_renderer(
                 custom_size: Some(Vec2::splat(TILE_SIZE)),
                 ..Default::default()
             },
-            Transform {
-                translation: v,
-                // scale: Vec3::splat(TILE_SIZE),
-                ..default()
-            },
+            Transform::from_translation(v),
         ));
         debug!("Rendered tile at {:?}", v);
     }
