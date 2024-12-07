@@ -5,8 +5,9 @@ pub const ATLAS_PATH: &str = "ascii.png";
 #[derive(Resource)]
 pub struct AsciiSpriteSheet(pub Handle<TextureAtlasLayout>);
 
-pub const SPRITE_FLOOR: usize = 177;
-pub const SPRITE_PLAYER: usize = 1;
+pub const SPRITE_TILE: usize = 177;
+pub const SPRITE_PLAYER: usize = 2;
+pub const SPRITE_EXIT: usize = 10;
 pub const SPRITE_QUESTION_MARK: usize = 63;
 
 impl FromWorld for AsciiSpriteSheet {

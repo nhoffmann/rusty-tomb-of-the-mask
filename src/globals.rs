@@ -1,2 +1,2 @@
-pub const WINDOW_WIDTH: f32 = 960.;
-pub const WINDOW_HEIGHT: f32 = 600.;
+pub const WINDOW_WIDTH: f32 = 360.;
+pub const WINDOW_HEIGHT: f32 = 640.;

@@ -20,3 +20,9 @@ impl Plugin for BoardPlugin {
 pub struct CurrentBoard {
     pub tiles: HashMap<Vector2Int, Entity>,
 }
+
+impl CurrentBoard {
+    pub fn tile_on_board(&self, v: Vector2Int) -> bool {
+        self.tiles.contains_key(&v)
+    }
+}

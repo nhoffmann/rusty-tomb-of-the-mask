@@ -9,7 +9,7 @@ use assets::AsciiSpriteSheet;
 pub const TILE_SIZE: f32 = 32.;
 pub const TILE_Z: f32 = 0.;
 pub const PIECE_Z: f32 = 10.;
-pub const PIECE_SPEED: f32 = 10.;
+pub const PIECE_SPEED: f32 = 30.;
 pub const POSITION_TOLERANCE: f32 = 0.1;
 
 mod assets;
@@ -25,6 +25,7 @@ impl Plugin for GraphicsPlugin {
                 OnEnter(MainState::Game),
                 (
                     tiles::spawn_tile_renderer.after(spawn_map),
+                    tiles::spawn_exit_renderer.after(spawn_map),
                     pieces::spawn_piece_renderer.after(spawn_player),
                 ),
             )
