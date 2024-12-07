@@ -20,15 +20,13 @@ impl Plugin for PlayerPlugin {
 #[derive(Component)]
 pub struct Player;
 
-pub fn spawn_player(mut commands: Commands) {
+pub fn spawn_player(mut commands: Commands, board: Res<CurrentBoard>) {
     commands.spawn((
         Player,
         Piece {
             kind: "Player".to_string(),
         },
-        Position {
-            v: Vector2Int { x: 0, y: 0 },
-        },
+        Position { v: board.start },
     ));
 }
 
@@ -48,16 +46,21 @@ fn move_player(
         return;
     }
 
-    let mut new_position = player_position.v + dir;
-    debug!("Moving player into direction {:?}", dir);
+    loop {
+        let next_position = player_position.v + dir;
 
-    // the while loop is bad, we need to move the player in the direction until we hit a wall one step at a time
-    // we can then check in a different system whether the player has reached the exit
-    while board.tile_on_board(new_position) {
-        new_position = new_position + dir;
+        if !board.tile_on_board(next_position) {
+            break;
+        }
 
-        // if new position is an exit tile, we win
+        debug!("Moving player into direction {:?}", dir);
+        player_position.v = next_position;
+
+        // if new position is the exit tile, we win
+        // TODO properly transition the game into a winning state
+        if next_position == board.exit {
+            info!("Player reached the exit!");
+            break;
+        }
     }
-
-    player_position.v = new_position - dir;
 }

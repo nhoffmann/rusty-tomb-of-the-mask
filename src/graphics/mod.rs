@@ -24,8 +24,9 @@ impl Plugin for GraphicsPlugin {
             .add_systems(
                 OnEnter(MainState::Game),
                 (
-                    tiles::spawn_tile_renderer.after(spawn_map),
-                    tiles::spawn_exit_renderer.after(spawn_map),
+                    (tiles::spawn_tile_renderer, tiles::spawn_exit_renderer)
+                        .chain()
+                        .after(spawn_map),
                     pieces::spawn_piece_renderer.after(spawn_player),
                 ),
             )

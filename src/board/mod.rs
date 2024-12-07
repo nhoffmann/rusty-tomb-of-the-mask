@@ -19,6 +19,10 @@ impl Plugin for BoardPlugin {
 #[derive(Default, Resource)]
 pub struct CurrentBoard {
     pub tiles: HashMap<Vector2Int, Entity>,
+    pub start: Vector2Int,
+    pub exit: Vector2Int,
+    pub width: i32,
+    pub height: i32,
 }
 
 impl CurrentBoard {
