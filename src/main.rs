@@ -1,5 +1,6 @@
 use bevy::prelude::*;
 
+mod actions;
 mod board;
 mod camera;
 mod globals;
@@ -28,7 +29,7 @@ fn main() {
         .add_plugins((
             board::BoardPlugin,
             graphics::GraphicsPlugin,
-            input::InputPlugin,
+            actions::ActionsPlugin,
             player::PlayerPlugin,
         ))
         .add_systems(Startup, camera::setup)
