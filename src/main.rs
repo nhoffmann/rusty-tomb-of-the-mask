@@ -5,7 +5,6 @@ mod board;
 mod camera;
 mod globals;
 mod graphics;
-mod input;
 mod pieces;
 mod player;
 mod states;
