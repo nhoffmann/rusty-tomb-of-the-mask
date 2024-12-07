@@ -25,6 +25,7 @@ fn main() {
                 .set(ImagePlugin::default_nearest()),
         )
         .init_state::<states::MainState>()
+        .init_state::<states::GameState>()
         .add_plugins((
             board::BoardPlugin,
             graphics::GraphicsPlugin,

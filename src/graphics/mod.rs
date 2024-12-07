@@ -3,7 +3,7 @@ use bevy::prelude::*;
 use crate::board::components::Position;
 use crate::board::systems::spawn_map;
 use crate::player::spawn_player;
-use crate::states::MainState;
+use crate::states::{GameState, MainState};
 use assets::AsciiSpriteSheet;
 
 pub const TILE_SIZE: f32 = 32.;
@@ -13,6 +13,7 @@ pub const PIECE_SPEED: f32 = 30.;
 pub const POSITION_TOLERANCE: f32 = 0.1;
 
 mod assets;
+mod overlays;
 mod pieces;
 mod tiles;
 
@@ -30,6 +31,7 @@ impl Plugin for GraphicsPlugin {
                     pieces::spawn_piece_renderer.after(spawn_player),
                 ),
             )
+            .add_systems(OnEnter(GameState::ExitReached), overlays::spawn_win_text)
             .add_systems(FixedUpdate, pieces::update_piece_position);
     }
 }
